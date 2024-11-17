@@ -2,26 +2,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ContactMenager"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ContactMenager.MainWindow"
         Title="ContactManager">
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Border BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5">
+                <Border Margin="10,0" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5" VerticalAlignment="Top">
                         <StackPanel Width="250" Orientation="Vertical" Margin="5">
                                 <TextBox Margin="5" Watermark="Imię" x:Name="Name" />
                                 <TextBox Margin="5" Watermark="Nazwisko" x:Name="Surname"/>
                                 <TextBox Margin="5" Watermark="Numer telefonu" x:Name="Number"/>
                                 <TextBox Margin="5" Watermark="E-mail" x:Name="Email"/>
                                 <Button HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="5" Content="Dodaj kontakt"/>
+                                <ComboBox HorizontalAlignment="Stretch" Margin="5" x:Name="Category" SelectionChanged="CategoryChanged" />
+                                <TextBox Margin="5" x:Name="Search" TextAlignment="Center" TextChanged="SearchChange" Watermark="Wyszukaj kontakt"></TextBox>
                         </StackPanel>
                 </Border>
-                <ListBox>
-                <StackPanel MinWidth="50" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock TextAlignment="Center" Text="Jacob "/>
-                        <TextBlock TextAlignment="Center" Text="Kurtosis "/>
-                        <TextBlock TextAlignment="Center" Text="794 849 563 "/>
-                        <TextBlock TextAlignment="Center" Text="zwolf12@gmail.com "/>
-                </StackPanel>
+                <ListBox x:Name="Kontakty" MaxHeight="450">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:Contact}">
+                                        <StackPanel MinWidth="250" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
+                                                <TextBlock TextAlignment="Center" Text="{Binding Name}"/>
+                                                <TextBlock TextAlignment="Center" Text="{Binding Surname}"/>
+                                                <TextBlock TextAlignment="Center" Text="{Binding Number}"/>
+                                                <TextBlock TextAlignment="Center" Text="{Binding Email}"/>
+                                                <CheckBox HorizontalAlignment="Center" Content="Ulubione" IsChecked="{Binding IsFavourite}" />
+                                        </StackPanel>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
                 </ListBox>
         </StackPanel>
 </Window>
