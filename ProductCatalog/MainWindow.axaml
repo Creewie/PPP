@@ -9,7 +9,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBox x:Name="Search" TextAlignment="Center" TextChanged="SearchChange" Watermark="Wyszukaj produkt"></TextBox>
-                        <ComboBox x:Name="Category" SelectionChanged="Filter" />
+                        <ComboBox x:Name="Category" SelectionChanged="CategoryChanged" />
                 </StackPanel>
                         
                 <ListBox x:Name="Products">

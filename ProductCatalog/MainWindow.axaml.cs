@@ -50,23 +50,29 @@ public partial class MainWindow : Window
     private readonly ObservableCollection<Product> _products = [];
     private readonly ObservableCollection<Product> filteredProducts = [];
 
-    private void SearchChange(object? sender, TextChangedEventArgs e)
-    {
-        Console.WriteLine(Search.Text);
-    }
 
-    private void Filter(object? sender, SelectionChangedEventArgs e)
-    {
+    private void Filter() {
         var selectedCategory = Category.SelectedItem as string;
         
         var filtered = string.IsNullOrEmpty(selectedCategory) || selectedCategory=="Wszystko"
             ? _products 
             : _products.Where(p => p.Category == selectedCategory);
         
+        filtered = filtered.Where(p => p.Name.Contains(Search.Text ?? string.Empty));
         filteredProducts.Clear();
         foreach (var product in filtered)
         {
             filteredProducts.Add(product);
         }
+    }
+
+    private void SearchChange(object? sender, TextChangedEventArgs e)
+    {
+        Filter();
+    }
+    
+    private void CategoryChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        Filter();
     }
 }
