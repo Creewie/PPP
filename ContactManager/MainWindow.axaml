@@ -13,7 +13,7 @@
                                 <TextBox Margin="5" Watermark="Nazwisko" x:Name="Surname"/>
                                 <TextBox Margin="5" Watermark="Numer telefonu" x:Name="Number"/>
                                 <TextBox Margin="5" Watermark="E-mail" x:Name="Email"/>
-                                <Button HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="5" Content="Dodaj kontakt"/>
+                                <Button HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="5" Click="AddContact" Content="Dodaj kontakt"/>
                                 <ComboBox HorizontalAlignment="Stretch" Margin="5" x:Name="Category" SelectionChanged="CategoryChanged" />
                                 <TextBox Margin="5" x:Name="Search" TextAlignment="Center" TextChanged="SearchChange" Watermark="Wyszukaj kontakt"></TextBox>
                         </StackPanel>
@@ -21,12 +21,15 @@
                 <ListBox x:Name="Kontakty" MaxHeight="450">
                         <ListBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type local:Contact}">
-                                        <StackPanel MinWidth="250" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
+                                        <StackPanel Width="250" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
                                                 <TextBlock TextAlignment="Center" Text="{Binding Name}"/>
                                                 <TextBlock TextAlignment="Center" Text="{Binding Surname}"/>
                                                 <TextBlock TextAlignment="Center" Text="{Binding Number}"/>
                                                 <TextBlock TextAlignment="Center" Text="{Binding Email}"/>
-                                                <CheckBox HorizontalAlignment="Center" Content="Ulubione" IsChecked="{Binding IsFavourite}" />
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                                                        <CheckBox HorizontalAlignment="Center" Content="Ulubione" IsChecked="{Binding IsFavourite}"/>
+                                                        <Button Margin="5,0 " HorizontalAlignment="Center" Command="{Binding DeleteCommand}" Content="Usuń"/>
+                                                </StackPanel>
                                         </StackPanel>
                                 </DataTemplate>
                         </ListBox.ItemTemplate>
