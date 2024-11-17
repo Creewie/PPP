@@ -5,4 +5,13 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ProductCatalog.MainWindow"
         Title="ProductCatalog">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox x:Name="Search" TextChanged="SearchChange" Watermark="Wyszukaj produkt"></TextBox>
+                <ListBox x:Name="Products">
+                        
+                </ListBox>
+                <ComboBox x:Name="Category">
+                        
+                </ComboBox>
+        </StackPanel>
 </Window>
