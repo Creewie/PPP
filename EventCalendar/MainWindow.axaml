@@ -6,17 +6,22 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EventCalendar.MainWindow"
         Title="EventCalendar">
-        <ListBox x:Name="Events">
-                <ListBox.ItemTemplate>
-                        <DataTemplate DataType="{x:Type local:Event}">
-                                <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <StackPanel Margin="10" Orientation="Vertical" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding Name}"></TextBlock>
-                                                <TextBlock Text="{Binding Day}"></TextBlock>
+        <Grid ColumnDefinitions="350" RowDefinitions="Auto,*" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Width="500" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBox TextAlignment="Left" Width="250" x:Name="Name" Watermark="Nazwa Wydarzenia"/>
+                        <ComboBox Margin="10, 0" x:Name="Day" />
+                        <Button Content="Dodaj Wydarzenie" Click="AddEvent" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <ListBox Grid.Row="1" x:Name="Events" MinWidth="300" MaxHeight="300" Margin="10">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:Event}">
+                                        <StackPanel Margin="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <TextBlock TextAlignment="Center" Text="{Binding Name}"></TextBlock>
+                                                <TextBlock TextAlignment="Center" Text="{Binding Day}"></TextBlock>
+                                                <CheckBox HorizontalAlignment="Center" Content="Ważne" IsChecked="{Binding IsImportant}"></CheckBox>
                                         </StackPanel>
-                                        <CheckBox IsChecked="{Binding IsImportant}"></CheckBox>
-                                </StackPanel>
-                        </DataTemplate>
-                </ListBox.ItemTemplate>        
-        </ListBox>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>        
+                </ListBox>
+        </Grid>
 </Window>
