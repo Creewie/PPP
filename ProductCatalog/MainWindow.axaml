@@ -2,16 +2,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:local="clr-namespace:ProductCatalog"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="1200"
         x:Class="ProductCatalog.MainWindow"
         Title="ProductCatalog">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBox x:Name="Search" TextChanged="SearchChange" Watermark="Wyszukaj produkt"></TextBox>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBox x:Name="Search" TextAlignment="Center" TextChanged="SearchChange" Watermark="Wyszukaj produkt"></TextBox>
+                        <ComboBox x:Name="Category">
+                                
+                        </ComboBox>
+                </StackPanel>
+                        
                 <ListBox x:Name="Products">
-                        
+                        <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:Product}">
+                                        <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <Image Width="100" Source="{Binding ImageBitmap}"></Image>
+                                                <StackPanel Margin="10" Orientation="Vertical" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                                <TextBlock Text="{Binding Price, StringFormat='{}{0:C}'}"></TextBlock>
+                                                <TextBlock Text="{Binding Category}"></TextBlock>
+                                                </StackPanel>
+                                        </StackPanel>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>        
                 </ListBox>
-                <ComboBox x:Name="Category">
-                        
-                </ComboBox>
+                
         </StackPanel>
 </Window>
