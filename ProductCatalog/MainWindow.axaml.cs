@@ -40,8 +40,11 @@ public partial class MainWindow : Window
             new Product{ Name = "iPhone 15", Price = 3500m, IsAvailable = true, Category = "Elektronika", ImagePath="avares://ProductCatalog/Assets/iphone15.png" },
             new Product{ Name = "Maya X", Price = 549m, Category = "Myszki/Kobiety", ImagePath = "avares://ProductCatalog/Assets/maya.png" },
         };
-        Category.ItemsSource = _products.Select(p=>p.Category).Distinct().ToList();
-        Products.ItemsSource = _products;
+        var kategorie = _products.Select(p=>p.Category).Distinct().ToList();
+        kategorie.Insert(0,"Wszystko");
+        Category.ItemsSource = kategorie;
+        Products.ItemsSource = filteredProducts;
+        Category.SelectedIndex = 0;
     }
     
     private readonly ObservableCollection<Product> _products = [];
@@ -50,5 +53,20 @@ public partial class MainWindow : Window
     private void SearchChange(object? sender, TextChangedEventArgs e)
     {
         Console.WriteLine(Search.Text);
+    }
+
+    private void Filter(object? sender, SelectionChangedEventArgs e)
+    {
+        var selectedCategory = Category.SelectedItem as string;
+        
+        var filtered = string.IsNullOrEmpty(selectedCategory) || selectedCategory=="Wszystko"
+            ? _products 
+            : _products.Where(p => p.Category == selectedCategory);
+        
+        filteredProducts.Clear();
+        foreach (var product in filtered)
+        {
+            filteredProducts.Add(product);
+        }
     }
 }
