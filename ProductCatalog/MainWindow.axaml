@@ -22,6 +22,7 @@
                                                 <TextBlock Text="{Binding Price, StringFormat='{}{0:C}'}"></TextBlock>
                                                 <TextBlock Text="{Binding Category}"></TextBlock>
                                                 </StackPanel>
+                                                <CheckBox IsChecked="{Binding IsAvailable}"></CheckBox>
                                         </StackPanel>
                                 </DataTemplate>
                         </ListBox.ItemTemplate>        
