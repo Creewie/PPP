@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="SurveyCreator.MainWindow"
+        Title="Kreator Ankiety" Width="800" Height="900">
+    
+    <StackPanel Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Wpisz pytanie:" />
+        <TextBox Name="QuestionTextBox" Watermark="Pytanie" />
+        
+        <TextBlock Text="Typ pytania:" />
+        <StackPanel Orientation="Horizontal">
+            <RadioButton Margin="1,1,15,1" Name="SingleChoiceRadio" Content="Jednokrotnego wyboru" GroupName="QuestionType" IsChecked="True" />
+            <RadioButton Name="MultipleChoiceRadio" Content="Wielokrotnego wyboru" GroupName="QuestionType" />
+        </StackPanel>
+        
+        <TextBlock Text="Dodaj opcje odpowiedzi:" />
+        <TextBox Name="AnswerOptionTextBox" Watermark="Opcja odpowiedzi" />
+        <Button Margin="0,5, 0, 5" Content="Dodaj opcję" Click="OnAddOptionClick" />
+        <ListBox Name="OptionsListBox" />
+        
+        <TextBlock Text="Kategoria pytania:" />
+        <ComboBox Name="CategoryComboBox">
+            <ComboBoxItem Content="Fakty" />
+            <ComboBoxItem Content="Ciekawostki" />
+            <ComboBoxItem Content="Misiana Misiana" />
+        </ComboBox>
+        
+        <Button Margin="0,5, 0, 5" Content="Dodaj pytanie do ankiety" Click="OnAddQuestionClick" />
+        <TextBlock Text="Pytania ankiety:" />
+        <ListBox Name="QuestionsListBox" />
+
+        <Button Margin="0,5, 0, 5" Content="Zapisz ankietę" Click="OnSaveSurveyClick" />
+    </StackPanel>
+</Window>

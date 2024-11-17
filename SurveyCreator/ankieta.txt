@@ -1,0 +1,6 @@
+Pytanie: Cos
+Typ: Wielokrotnego wyboru
+Kategoria: Edukacja
+Opcje odpowiedzi:
+ - gdf
+ - gdf
